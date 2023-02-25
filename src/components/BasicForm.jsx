@@ -1,7 +1,10 @@
+import { useState } from "react";
 import useInput from "../hooks/useInput";
 import "./form.css";
 
 const BasicForm = (props) => {
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const [
     first,
     firstIsValid,
@@ -38,6 +41,8 @@ const BasicForm = (props) => {
       return;
     }
 
+    setFormSubmitted(true);
+
     console.log(first, last, email);
 
     resetFirst();
@@ -46,52 +51,57 @@ const BasicForm = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="control-group">
-        <div className={`form-control${firstHasError ? " invalid" : ""}`}>
-          <label htmlFor="first-name">First name:</label>
-          <input
-            type="text"
-            id="first-name"
-            onChange={handleFirstChange}
-            onBlur={handleFirstBlur}
-            value={first}
-          />
-          {firstHasError && (
-            <p className="error-text">First name must not be empty.</p>
-          )}
+    <>
+      <form onSubmit={handleSubmit}>
+        <div className="control-group">
+          <div className={`form-control${firstHasError ? " invalid" : ""}`}>
+            <label htmlFor="first-name">First name:</label>
+            <input
+              type="text"
+              id="first-name"
+              onChange={handleFirstChange}
+              onBlur={handleFirstBlur}
+              value={first}
+            />
+            {firstHasError && (
+              <p className="error-text">First name must not be empty.</p>
+            )}
+          </div>
+          <div className={`form-control${lastHasError ? " invalid" : ""}`}>
+            <label htmlFor="last-name">Last name:</label>
+            <input
+              type="text"
+              id="last-name"
+              onChange={handleLastChange}
+              onBlur={handleLastBlur}
+              value={last}
+            />
+            {lastHasError && (
+              <p className="error-text">Last name must not be empty.</p>
+            )}
+          </div>
+          <div className={`form-control${emailHasError ? " invalid" : ""}`}>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              onChange={handleEmailChange}
+              onBlur={handleEmailBlur}
+              value={email}
+            />
+            {emailHasError && (
+              <p className="error-text">Email must be a valid email address.</p>
+            )}
+          </div>
         </div>
-        <div className={`form-control${lastHasError ? " invalid" : ""}`}>
-          <label htmlFor="last-name">Last name:</label>
-          <input
-            type="text"
-            id="last-name"
-            onChange={handleLastChange}
-            onBlur={handleLastBlur}
-            value={last}
-          />
-          {lastHasError && (
-            <p className="error-text">Last name must not be empty.</p>
-          )}
+        <div className="form-actions">
+          <button disabled={!formIsValid}>Submit</button>
         </div>
-        <div className={`form-control${emailHasError ? " invalid" : ""}`}>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            onChange={handleEmailChange}
-            onBlur={handleEmailBlur}
-            value={email}
-          />
-          {emailHasError && (
-            <p className="error-text">Email must be a valid email address.</p>
-          )}
-        </div>
-      </div>
-      <div className="form-actions">
-        <button disabled={!formIsValid}>Submit</button>
-      </div>
-    </form>
+      </form>
+      {formSubmitted && (
+        <p className="success-text">Thank you for your personal data!</p>
+      )}
+    </>
   );
 };
 
