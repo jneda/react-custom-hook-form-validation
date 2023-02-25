@@ -1,3 +1,14 @@
+.control-group {
+  display: flex;
+  column-gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.control-group .form-control {
+  min-width: 15rem;
+  flex: 1;
+}
+
 .form-control {
   margin-bottom: 1rem;
 }
