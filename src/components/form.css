@@ -19,11 +19,13 @@
   border: 1px solid #ccc;
   width: 20rem;
   max-width: 100%;
+  background: aliceblue;
 }
 
 .form-control input:focus {
   outline: none;
-  border-color: #96ddea;
+  border-color: #70d2e4;
+  background: rgb(233, 245, 255);
 }
 
 button {
@@ -41,10 +43,31 @@ button:active {
   filter: brightness(1);
 }
 
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  background: #ccc;
+  border-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}
+
 .form-actions {
   text-align: end;
 }
 
 .form-actions button {
   margin-left: 1rem;
+}
+
+.invalid input {
+  border: 1px solid rgb(183, 33, 33);
+}
+
+.invalid input:focus {
+  border: 1px solid rgb(183, 166, 33);
+}
+
+.error-text {
+  color: rgb(183, 33, 33);
 }
