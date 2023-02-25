@@ -48,7 +48,7 @@ const BasicForm = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="control-group">
-        <div className="form-control">
+        <div className={`form-control${firstHasError ? " invalid" : ""}`}>
           <label htmlFor="first-name">First name:</label>
           <input
             type="text"
@@ -61,7 +61,7 @@ const BasicForm = (props) => {
             <p className="error-text">First name must not be empty.</p>
           )}
         </div>
-        <div className="form-control">
+        <div className={`form-control${lastHasError ? " invalid" : ""}`}>
           <label htmlFor="last-name">Last name:</label>
           <input
             type="text"
@@ -74,7 +74,7 @@ const BasicForm = (props) => {
             <p className="error-text">Last name must not be empty.</p>
           )}
         </div>
-        <div className="form-control">
+        <div className={`form-control${emailHasError ? " invalid" : ""}`}>
           <label htmlFor="email">Email:</label>
           <input
             type="email"
