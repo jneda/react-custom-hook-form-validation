@@ -1,0 +1,8 @@
+.app {
+  width: 90%;
+  max-width: 40rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: aliceblue;
+  margin: 3rem auto;
+}
